@@ -3,6 +3,7 @@ const path = require("path");
 const app = express();
 const productRouter = require("./app/product/routes");
 const logger = require("morgan");
+const { url } = require("inspector");
 
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
@@ -13,7 +14,7 @@ app.use((req, res, next) => {
   res.status(404);
   res.send({
     status: "failed",
-    massage: "resource " + req.originalUrl + " not found",
+    massage: "resource" + url.originalUrl + "not found",
   });
 });
 
